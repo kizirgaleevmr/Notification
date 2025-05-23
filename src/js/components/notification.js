@@ -30,3 +30,43 @@ export function showNotification(obj) {
     window.document.body.insertAdjacentHTML("beforeend", template);
     checkElement();
 }
+
+/**
+ *Функция для смещения элемента
+ * @param {number} element - передаем длину массива элементов на странице
+ */
+function movePosition(element) {
+    const checkNotification = Array.from(
+        document.querySelectorAll(".notification")
+    );
+    checkNotification.forEach((item, index) => {
+        checkNotification[index].style.bottom = 120 + 60 * index + "px";
+    });
+}
+
+/**
+ * Функция для проверки элмента на странице
+ */
+function checkElement() {
+    const element = Array.from(document.querySelectorAll(".notification"));
+    if (element.length) {
+        movePosition(element.length);
+    }
+}
+
+//получаем все уведомления для дальнейшего удаления
+window.document.addEventListener("DOMContentLoaded", () => {
+    const ch = Array.from(document.querySelectorAll(".notification"));
+    if (ch.length) {
+        const btn = Array.from(document.querySelectorAll("button"));
+        btn.forEach((item) => {
+            item.addEventListener("click", (event) => {
+                event.stopPropagation();
+
+                //получаем родителя
+                const element = event.target.parentNode.parentNode;
+                element.remove();
+            });
+        });
+    }
+});

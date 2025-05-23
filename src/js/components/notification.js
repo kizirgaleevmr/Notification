@@ -12,3 +12,21 @@ const getIconSVG = (variant) => {
     };
     return icons[variant] || icons.info;
 };
+
+/**
+ *Функция генерация элемента
+ * @param {object} obj - принимает объект с информацией об уведомление
+ */
+export function showNotification(obj) {
+    const template = `<div class="notification notification-${obj.variant}">
+    <span class="notification-icon">${getIconSVG(obj.variant)}</span>
+    <div class="notification-content">
+    <p class="notification-title">${obj.title}</p>
+    <p class="notification-subtitle">${obj.subtitle}</p>
+    </div>
+    <button class="notification-button"><img src="/src/images/delete-icon.svg" alt="icon-delete"></button>
+    </div>`;
+
+    window.document.body.insertAdjacentHTML("beforeend", template);
+    checkElement();
+}

@@ -1,5 +1,5 @@
 <div>
-  <h1>Shopping cart</h1>
+  <h1>Notification example</h1>
 </div>
 
 ## Instructions 📋
